@@ -19,14 +19,14 @@
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseExample">
         Fazer Inscrição
       </button>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapseExample">
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapseExample" onclick="showAll()">
         Listar candidatos
       </button>
     </p>
     <div class="collapse" id="collapseForm">
       <div class="card card-body">
         <form action="/" method="post" class="form-signin">
-          <img class="mb-3" src="images/logo.svg" alt="" width="72" height="72">
+          <img class="mb-3" src="img/unimed.png" alt="" width="72" height="72">
           <h1 class="h3 mb-2 font-weight-normal">Inscrição</h1>
     
           <div class="mb-3">
@@ -52,37 +52,19 @@
       </div>
     </div>
     <div class="collapse" id="collapseTable">
-      <table class="table">
+      <table class="table" name="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Contato</th>
+            <th scope="col">Email</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+        <tbody id="contatos">
         </tbody>
       </table>
     </div>
   </div>
+  <script src="js/main.js"></script>
 </body>
 </html>

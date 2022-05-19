@@ -4,10 +4,12 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 
 const dbConfig = require("./db.json");
+const { send } = require("express/lib/response");
 const con = mysql.createConnection(dbConfig);
 const app = express();
 const db = database();
 
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res)=>{
@@ -24,13 +26,15 @@ app.post("/", (req, res)=>{
     if (err) throw err;
     console.log("Result: " + result);
   });
+
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/Lista", function(req, res){
   res.sendFile(__dirname + "/lista.html");
 });
 
-app.get("/ListaAll", function(req, res){
+app.get("/ListAll", function(req, res){
   const sql = "SELECT * FROM nodeMySQL.contatos ORDER BY name";
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
