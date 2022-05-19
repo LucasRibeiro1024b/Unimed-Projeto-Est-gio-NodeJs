@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const dbConfig = require("./db.json");
 
-let con = mysql.createConnection(dbConfig);
+const con = mysql.createConnection(dbConfig);
 
 module.exports = function database(){
   con.connect(function(err) {

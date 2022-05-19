@@ -3,6 +3,8 @@ const database = require("./Database");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 
+const dbConfig = require("./db.json");
+const con = mysql.createConnection(dbConfig);
 const app = express();
 const db = database();
 
@@ -17,11 +19,25 @@ app.post("/", (req, res)=>{
   let phone = req.body.contato;
   let email = req.body.email;
 
-  console.log(name);
-  console.log(phone);
-  console.log(email);
+  const sql = "INSERT INTO nodeMySQL.contatos VALUES ('"+name+"',"+phone+",'"+email+"')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Result: " + result);
+  });
+});
 
-  
+app.get("/Lista", function(req, res){
+  res.sendFile(__dirname + "/lista.html");
+});
+
+app.get("/ListaAll", function(req, res){
+  const sql = "SELECT * FROM nodeMySQL.contatos ORDER BY name";
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    // console.log(result[0].name);
+    res.send(result);
+  });
 });
 
 app.listen(3000, ()=>{
